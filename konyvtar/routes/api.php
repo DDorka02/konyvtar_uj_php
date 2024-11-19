@@ -35,6 +35,11 @@ Route::middleware(['auth:sanctum'])
         Route::get('/lendings-copies', [LendingController::class, "lendingsWithCopies"]);
         Route::get('/userlendings', [UserController::class, "userLendings"]);
 
+        Route::get('reserved-books',[ResevationController::class,'reservedBooks'])
+        Route::get('/reserved-counts', [ResevationController::class, 'reservedCounts'])
+
+
+
         // Kijelentkezés útvonal
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
     });
@@ -55,6 +60,7 @@ Route::middleware(['auth:sanctum', Librarian::class])
     Route::apiResource('/librarian/reservations', [ResevationController::class, 'index'])
     Route::apiResource('/librarian/reservations/{user_id}/{book_id}/{start}', [ResevationController::class, 'show']);
     Route::patch('/librarian/reservations/{user_id}/{book_id}/{start}', [ResevationController::class, 'update']);;
+    Route::get('/librarian/usere-s', [UserController::class, 'useres']);
 
 });
 

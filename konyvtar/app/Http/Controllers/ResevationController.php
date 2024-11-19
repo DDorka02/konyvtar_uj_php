@@ -56,5 +56,20 @@ class ResevationController extends Controller
     {
         $this->show($user_id, $book_id, $start)->delete();
     }
+
+    public function reservedBooks(){
+        $user = Auth::user();
+        return Resevation::with('books')
+        ->where('user_id', $user_id)
+        ->get();
+    }
+
+    public function reservedCounts(){
+        $user = Auth::user();
+        $pices =DB::table('resevation')
+        where('user_id', $user->id)
+        ->count()
+        return $pices
+    }
 }
 
